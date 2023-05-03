@@ -1,4 +1,17 @@
 * {
     margin: 0;
     padding: 0;
+    overflow: hidden;
+
+}
+
+.app {
+    overflow: hidden;
+}
+
+.controls {
+    position: absolute;
+    color:white;
+    margin-left: 1rem;
+    margin-top: 1rem;
 }

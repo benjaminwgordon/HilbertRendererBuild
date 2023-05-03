@@ -1,16 +1,16 @@
 import * as wasm from "hilbert_wasm_renderer";
 import * as THREE from "three";
+import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils";
 
+// Global variables
+let n = 3;
+let p = 3;
+let rotation = 0;
+let pipeThickness = 0.2;
+let geometryType = "square";
+
+let camera;
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(
-  70,
-  window.innerWidth / window.innerHeight,
-  0.1,
-  1000
-);
-
-scene.add(camera);
-
 const renderer = new THREE.WebGLRenderer({
   antialias: true,
 });
@@ -21,121 +21,87 @@ renderer.setPixelRatio(window.devicePixelRatio);
 
 document.body.appendChild(renderer.domElement);
 
-camera.position.set(5, 5, 5);
-
-function render(n, p) {
+function render() {
   // clear any prior geometry
   clearScene(scene);
 
-  // n and p can be passed as arguments directly, or taken from an input form
-  n = n == undefined ? document.getElementById("nInput").value : n;
-  p = p == undefined ? document.getElementById("pInput").value : p;
-  console.log({ n }, { p });
-  const hilbert_flat_buffer = wasm.hilbert_coordinates(n, p);
-
-  const hilbertVectors = [];
-  for (let i = 0; i < hilbert_flat_buffer.length; i += 3) {
-    hilbertVectors.push(
-      new THREE.Vector3(
-        hilbert_flat_buffer[i],
-        hilbert_flat_buffer[i + 1],
-        hilbert_flat_buffer[i + 2]
-      )
-    );
-  }
-
-  // default lines renderer for validation
-  const lineMaterial = new THREE.LineDashedMaterial({
-    color: 0x00ff00,
-    dashSize: 3,
-    gapSize: 3,
-    scale: 1,
-    linewidth: 1,
-  });
-
-  const bufferGeometry = new THREE.BufferGeometry().setFromPoints(
-    hilbertVectors
+  camera = new THREE.PerspectiveCamera(
+    70,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    1000
   );
-  const line = new THREE.Line(bufferGeometry, lineMaterial);
-  scene.add(line);
 
-  const boxMaterial = new THREE.MeshPhongMaterial({ color: 0xaaaaaa });
-  const capsuleGeometry = new THREE.CapsuleGeometry(0.08, 1, 2);
-  capsuleGeometry.rotateX(1.5708);
-  capsuleGeometry.rotateY(1.5708);
+  const hilbert_flat_buffer = wasm.hilbert_coordinates(n, p);
+  const hilbertVectors = unflattenHilbertVectors(hilbert_flat_buffer);
 
-  for (let i = 0; i < hilbertVectors.length - 2; i++) {
-    // tail leading in
-    // const lineInGeometry = new THREE.BoxGeometry(0.1, 0.1, 1.1);
-    const lineInGeometry = capsuleGeometry.clone();
+  const roundedGeometry = new THREE.CapsuleGeometry(pipeThickness, 1, 2);
+  const squareGeometry = new THREE.BoxGeometry(
+    pipeThickness,
+    1 + pipeThickness,
+    pipeThickness
+  );
+  const pipeGeometry =
+    geometryType == "round" ? roundedGeometry : squareGeometry;
+
+  // create a correctly rotated capsule geometry and use it like a prefab
+  const pipeMaterial = new THREE.MeshPhongMaterial({ color: 0xaaaaaa });
+  pipeGeometry.rotateX(1.5708);
+  pipeGeometry.rotateZ(1.5708);
+
+  const geometries = [];
+  for (let i = 1; i < hilbertVectors.length; i++) {
+    const lineInGeometry = pipeGeometry.clone();
     const previousVertex =
       i == 0 ? new THREE.Vector3(0, 0, 0) : hilbertVectors[i - 1];
     const lineInDirection = hilbertVectors[i]
       .clone()
       .sub(previousVertex)
       .normalize();
-    // lineInGeometry.lookAt(lineInDirection);
-    const quat = new THREE.Quaternion().setFromUnitVectors(
-      new THREE.Vector3(0, 1, 0),
-      lineInDirection
-    );
-    console.log({ quat });
+    lineInGeometry.lookAt(lineInDirection);
     lineInGeometry.translate(
       hilbertVectors[i].x - lineInDirection.x * 0.5,
       hilbertVectors[i].y - lineInDirection.y * 0.5,
       hilbertVectors[i].z - lineInDirection.z * 0.5
     );
-    const lineIn = new THREE.Mesh(lineInGeometry, boxMaterial);
-    scene.add(lineIn);
-
-    // tail leading out
-    // const lineOutGeometry = new THREE.BoxGeometry(0.1, 0.1, 1.1);
-    const lineOutGeometry = capsuleGeometry.clone();
-    const lineOutDirection = hilbertVectors[i + 1]
-      .clone()
-      .sub(hilbertVectors[i])
-      .normalize();
-    lineOutGeometry.lookAt(lineOutDirection);
-    lineOutGeometry.translate(
-      hilbertVectors[i + 1].x - lineOutDirection.x * 0.5,
-      hilbertVectors[i + 1].y - lineOutDirection.y * 0.5,
-      hilbertVectors[i + 1].z - lineOutDirection.z * 0.5
-    );
-    const lineOut = new THREE.Mesh(lineOutGeometry, boxMaterial);
-    scene.add(lineOut);
+    geometries.push(lineInGeometry);
   }
 
-  const topLight = new THREE.DirectionalLight(0x0000ff, 0.8);
-  const bottomLight = new THREE.DirectionalLight(0xff0000, 0.8);
-  const leftLight = new THREE.DirectionalLight(0x00ff00, 0.3);
-  const rightLight = new THREE.DirectionalLight(0x00ff00, 0.3);
+  const hilbertGeometries = mergeGeometries(geometries);
+  const hilbertMeshes = new THREE.Mesh(hilbertGeometries, pipeMaterial);
+  hilbertMeshes.geometry.center();
+  scene.add(hilbertMeshes);
 
-  leftLight.position.set(0, 100, -100);
-  topLight.position.set(100, 100, 100);
-  bottomLight.position.set(-100, -100, -100);
-  scene.add(topLight);
-  scene.add(bottomLight);
-  scene.add(leftLight);
-  const ambientLight = new THREE.AmbientLight(0x00ff00, 0.1);
+  const lightOne = new THREE.DirectionalLight(0x00ffff, 0.5);
+  const lightTwo = new THREE.DirectionalLight(0x00ff00, 0.4);
+  const lightThree = new THREE.DirectionalLight(0xff00ff, 0.5);
+  const lightFour = new THREE.DirectionalLight(0xff0000, 0.5);
+
+  lightOne.position.set(0, -1, 0);
+  lightTwo.position.set(0, 1, 0);
+  lightThree.position.set(-1, 0, 0);
+  lightFour.position.set(1, 0, 0);
+
+  for (const light of [lightOne, lightTwo, lightThree, lightFour]) {
+    scene.add(light);
+  }
+
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
   scene.add(ambientLight);
 }
 
-document.getElementById("renderSubmit").onclick = () => {
-  render(undefined, undefined);
-};
+//document.getElementById("renderSubmit").onclick = render;
 
-// start the app with a 3x3 hilbert cube with camera centered in the middle of the cube
-render(3, 4);
-camera.position.set(2 ** 4 / 2 + 1, 2 ** 4 / 2 + 2, 2 ** 4 / 2);
-camera.rotateX(-0.5);
-camera.rotateY(-0.5);
-
-const axesHelper = new THREE.AxesHelper(10);
-scene.add(axesHelper);
+render();
 
 function animate(obj) {
   requestAnimationFrame(animate);
-  camera.rotateY(0.002);
+  // throw the camera in a gentle ellipse around model center
+  rotation += 0.006;
+  camera.position.x = Math.sin(rotation) * 2 ** p * 1.5;
+  camera.position.y = 2 ** p;
+  camera.position.z = Math.cos(rotation) * 2 ** p * 1.2;
+  camera.lookAt(scene.position);
   renderer.render(scene, camera);
 }
 animate();
@@ -145,3 +111,46 @@ function clearScene(scene) {
     scene.remove(scene.children[0]);
   }
 }
+
+function unflattenHilbertVectors(hilbertFlatBuffer) {
+  const hilbertVectors = [];
+  for (let i = 0; i < hilbertFlatBuffer.length; i += 3) {
+    hilbertVectors.push(
+      new THREE.Vector3(
+        hilbertFlatBuffer[i],
+        hilbertFlatBuffer[i + 1],
+        hilbertFlatBuffer[i + 2]
+      )
+    );
+  }
+  return hilbertVectors;
+}
+
+// global setters
+const updateN = (newGeometryTypeIs3D) => {
+  n = newGeometryTypeIs3D ? 3 : 2;
+  render();
+};
+const updateGeometryType = (newGeometryTypeIsSquare) => {
+  geometryType = newGeometryTypeIsSquare ? "square" : "round";
+  render();
+};
+function updateP(newP) {
+  p = newP;
+  render();
+}
+const updatePipeThickness = (newPipeThickness) => {
+  // pipe thickness is specified as integers, but is actually thousands of a unit
+  pipeThickness = newPipeThickness / 1000;
+  render();
+};
+
+// attach setters
+document.getElementById("isGeometry3D").onclick = (e) =>
+  updateN(e.target.checked);
+document.getElementById("isGeometrySquare").onclick = (e) =>
+  updateGeometryType(e.target.checked);
+
+document.getElementById("pInput").onchange = (e) => updateP(e.target.value);
+document.getElementById("pipeThicknessInput").onchange = (e) =>
+  updatePipeThickness(e.target.value);
