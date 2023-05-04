@@ -1,4 +1,4 @@
-import * as wasm from "../pkg";
+import * as wasm from "../pkg/hilbert_wasm_renderer";
 import * as THREE from "three";
 import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils";
 
