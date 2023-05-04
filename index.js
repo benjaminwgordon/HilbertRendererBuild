@@ -94,7 +94,7 @@ function render() {
 
 render();
 
-function animate(obj) {
+function animate() {
   requestAnimationFrame(animate);
   // throw the camera in a gentle ellipse around model center
   rotation += 0.006;
