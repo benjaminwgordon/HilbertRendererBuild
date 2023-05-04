@@ -1,4 +1,4 @@
-import HilbertThreeRenderer from "../components/hilbertThreeRenderer";
+import HilbertThreeRenderer from "../components/HilbertThreeRenderer";
 
 function HomePage() {
   return (
