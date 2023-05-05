@@ -8,10 +8,18 @@ type HilbertThreeRendererProps = {
   initP: number;
   initPipeThickness: number;
   initGeometryType: string;
+  isControlEnabled: boolean;
 };
 const HilbertThreeRenderer = (props: HilbertThreeRendererProps) => {
-  const { initN, initP, initPipeThickness, initGeometryType } = props;
+  const {
+    initN,
+    initP,
+    initPipeThickness,
+    initGeometryType,
+    isControlEnabled,
+  } = props;
 
+  // initialize the renderer state with the values from props, otherwise use defaults
   let n = initN || 3;
   let p = initP || 3;
   let pipeThickness = initPipeThickness || 0.2;
@@ -19,9 +27,13 @@ const HilbertThreeRenderer = (props: HilbertThreeRendererProps) => {
   let rotation = 0;
   const THREECanvasMount = useRef(null);
 
+  // camera and scene get initialized before render to prevent null access
   let camera: THREE.PerspectiveCamera | null;
   const scene = new THREE.Scene();
 
+  // once the component is rendered:
+  //  (so that the canvas exists to mount a THREE.Renderer to)
+  //  set up the scene
   useEffect(() => {
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
@@ -31,8 +43,6 @@ const HilbertThreeRenderer = (props: HilbertThreeRendererProps) => {
     renderer.setPixelRatio(window.devicePixelRatio);
 
     THREECanvasMount.current.appendChild(renderer.domElement);
-
-    console.log("called into useeffect");
 
     renderHilbertGeometry();
 
@@ -163,20 +173,21 @@ const HilbertThreeRenderer = (props: HilbertThreeRendererProps) => {
     return hilbertVectors;
   }
 
-  return (
-    <div>
-      <div className="controls">
-        <div className="slidecontainer">
+  const controls = () => {
+    return (
+      <div className="absolute top left text-white">
+        <div className="ml-2">
           <label htmlFor="geometryIs3D">3D?</label>
           <input
             type="checkbox"
             name="isGeometry3D"
             id="isGeometry3D"
             onChange={(e) => updateN(e.target.checked)}
+            className="mx-2"
             defaultChecked
           />
         </div>
-        <div className="slidecontainer">
+        <div className="ml-2">
           <label htmlFor="isGeometrySquare">Square?</label>
           <input
             type="checkbox"
@@ -186,34 +197,41 @@ const HilbertThreeRenderer = (props: HilbertThreeRendererProps) => {
               console.log(e.target.checked);
               updateGeometryType(e.target.checked);
             }}
+            className="mx-2"
             defaultChecked
           />
         </div>
-        <div className="slidecontainer">
+        <div className="ml-2">
           <label htmlFor="pInput">Magnitude</label>
           <input
             type="range"
             min="1"
             max="6"
             defaultValue="3"
-            className="slider"
+            className="mx-2"
             id="pInput"
             onChange={(e) => updateP(e.target.value)}
           />
         </div>
-        <div className="slidecontainer">
+        <div className="ml-2">
           <label htmlFor="pipeThicknessInput">Thickness</label>
           <input
             type="range"
             min="1"
             max="1000"
             defaultValue="150"
-            className="slider"
+            className="mx-2"
             id="pipeThicknessInput"
             onChange={(e) => updatePipeThickness(e.target.value)}
           />
         </div>
       </div>
+    );
+  };
+
+  return (
+    <div className="relative">
+      {isControlEnabled && controls()}
       <div ref={THREECanvasMount} />
     </div>
   );
