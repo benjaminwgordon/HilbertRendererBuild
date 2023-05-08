@@ -38,17 +38,30 @@ const HilbertThreeRenderer = (props: HilbertThreeRendererProps) => {
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
     });
-    renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(new THREE.Color(0x000000));
     renderer.setPixelRatio(window.devicePixelRatio);
 
-    THREECanvasMount.current.appendChild(renderer.domElement);
-
+    if (THREECanvasMount.current.children.length == 0) {
+      THREECanvasMount.current.appendChild(renderer.domElement);
+    }
     renderHilbertGeometry();
 
     function animate() {
       if (scene && camera) {
         requestAnimationFrame(animate);
+
+        if (THREECanvasMount.current) {
+          console.log(THREECanvasMount.current);
+          renderer.setSize(
+            THREECanvasMount.current.clientWidth,
+            THREECanvasMount.current.clientHeight
+          );
+          camera.aspect =
+            THREECanvasMount.current.clientWidth /
+            THREECanvasMount.current.clientHeight;
+          camera.updateProjectionMatrix();
+        }
+
         // throw the camera in a gentle ellipse around model center
         rotation += 0.006;
         camera.position.x = Math.sin(rotation) * 2 ** p * 1.5;
@@ -230,7 +243,7 @@ const HilbertThreeRenderer = (props: HilbertThreeRendererProps) => {
   };
 
   return (
-    <div className="relative">
+    <div>
       {isControlEnabled && controls()}
       <div ref={THREECanvasMount} />
     </div>
