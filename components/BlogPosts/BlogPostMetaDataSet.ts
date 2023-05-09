@@ -4,7 +4,7 @@ const BlogPostMetaDataSet: BlogPostMetadataType[] = [
   {
     id: 0,
     slug: "HilbertCurves1",
-    title: "What is a Hilbert Curve Anyways?",
+    title: "What is a Hilbert Curve and Why Does It Matter?",
     author: "Ben Gordon",
     publishDate: new Date(2023, 4, 5),
   },

@@ -32,8 +32,10 @@ const Navbar = () => {
     return (
       <li
         key={`navbar-link-to-${link.name}`}
-        className={`list-none py-1 w-full text-center ${
-          isActivePath(currentPath, link.route) && `border-b-2 border-gray-200`
+        className={`list-none p-2 text-center border-b-2 font-semibold ${
+          isActivePath(currentPath, link.route)
+            ? ` border-gray-200`
+            : `border-gray-800`
         }`}
       >
         <Link href={link.route}>{link.name}</Link>
@@ -42,9 +44,11 @@ const Navbar = () => {
   });
 
   return (
-    <nav className="p-1 bg-gray-800 text-gray-200 w-full flex flex-row justify-around">
-      {navbarLinkJSX}
-    </nav>
+    <div className="p-1 bg-gray-800 text-gray-200 w-full flex flex-row justify-end">
+      <nav className="max-w-xl w-full flex flex-row justify-end">
+        {navbarLinkJSX}
+      </nav>
+    </div>
   );
 };
 

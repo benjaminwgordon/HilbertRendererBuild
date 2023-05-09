@@ -1,4 +1,3 @@
-import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import "globals.css";
 
@@ -12,14 +11,13 @@ export default function App({ Component, pageProps }) {
   };
 
   return (
-    <div>
+    <div className="bg-gray-50 h-screen">
       <header>
         <Navbar />
       </header>
       <section>
         <Layout Component={Component} pageProps={pageProps} />
       </section>
-      <Footer />
     </div>
   );
 }

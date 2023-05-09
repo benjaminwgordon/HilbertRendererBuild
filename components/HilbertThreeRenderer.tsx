@@ -51,7 +51,6 @@ const HilbertThreeRenderer = (props: HilbertThreeRendererProps) => {
         requestAnimationFrame(animate);
 
         if (THREECanvasMount.current) {
-          console.log(THREECanvasMount.current);
           renderer.setSize(
             THREECanvasMount.current.clientWidth,
             THREECanvasMount.current.clientHeight
@@ -146,10 +145,10 @@ const HilbertThreeRenderer = (props: HilbertThreeRendererProps) => {
     hilbertMeshes.geometry.center();
     scene.add(hilbertMeshes);
 
-    const lightOne = new THREE.DirectionalLight(0x00ffff, 0.5);
-    const lightTwo = new THREE.DirectionalLight(0x00ff00, 0.4);
-    const lightThree = new THREE.DirectionalLight(0xff00ff, 0.5);
-    const lightFour = new THREE.DirectionalLight(0xff0000, 0.5);
+    const lightOne = new THREE.DirectionalLight(0x00ffff, 0.7);
+    const lightTwo = new THREE.DirectionalLight(0x00ff00, 0.6);
+    const lightThree = new THREE.DirectionalLight(0xff00ff, 0.7);
+    const lightFour = new THREE.DirectionalLight(0xff0000, 0.7);
 
     lightOne.position.set(0, -1, 0);
     lightTwo.position.set(0, 1, 0);
@@ -160,7 +159,7 @@ const HilbertThreeRenderer = (props: HilbertThreeRendererProps) => {
       scene.add(light);
     }
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
     scene.add(ambientLight);
   }
 
@@ -243,9 +242,9 @@ const HilbertThreeRenderer = (props: HilbertThreeRendererProps) => {
   };
 
   return (
-    <div>
+    <div className="w-full h-full">
       {isControlEnabled && controls()}
-      <div ref={THREECanvasMount} />
+      <div className="w-full h-full" ref={THREECanvasMount} />
     </div>
   );
 };
