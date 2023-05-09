@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }) {
   };
 
   return (
-    <div className="bg-gray-50 h-screen">
+    <div className="bg-gray-50 h-full">
       <header>
         <Navbar />
       </header>

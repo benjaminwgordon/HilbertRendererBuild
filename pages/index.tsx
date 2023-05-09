@@ -10,13 +10,14 @@ function HomePage() {
           Graphics, and Full-Stack Web Development.
         </p>
       </div>
-      <div className="m-auto -mt-28 h-full z-0">
+      <div className="m-auto -mt-28 h-full w-full z-0">
         <HilbertThreeRenderer
           initN={3}
           initP={2}
           initPipeThickness={0.2}
           initGeometryType={"square"}
           isControlEnabled={false}
+          isSpinning={true}
         />
       </div>
     </div>

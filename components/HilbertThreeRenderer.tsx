@@ -9,6 +9,7 @@ type HilbertThreeRendererProps = {
   initPipeThickness: number;
   initGeometryType: string;
   isControlEnabled: boolean;
+  isSpinning: boolean;
 };
 const HilbertThreeRenderer = (props: HilbertThreeRendererProps) => {
   const {
@@ -17,6 +18,7 @@ const HilbertThreeRenderer = (props: HilbertThreeRendererProps) => {
     initPipeThickness,
     initGeometryType,
     isControlEnabled,
+    isSpinning,
   } = props;
 
   // initialize the renderer state with the values from props, otherwise use defaults
@@ -62,10 +64,15 @@ const HilbertThreeRenderer = (props: HilbertThreeRendererProps) => {
         }
 
         // throw the camera in a gentle ellipse around model center
-        rotation += 0.006;
+        if (isSpinning) {
+          rotation += 0.006;
+          camera.position.y = 2 ** p;
+        } else {
+          camera.position.y = 0;
+        }
         camera.position.x = Math.sin(rotation) * 2 ** p * 1.5;
-        camera.position.y = 2 ** p;
         camera.position.z = Math.cos(rotation) * 2 ** p * 1.2;
+
         camera.lookAt(scene.position);
         renderer.render(scene, camera);
       } else {

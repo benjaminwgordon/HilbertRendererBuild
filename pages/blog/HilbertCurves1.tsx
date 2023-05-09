@@ -19,6 +19,16 @@ const HilbertCurves1 = () => {
         publishDate={HilbertCurves1Metadata.publishDate}
       />
       <article className="">
+        <div className=" w-full h-72 mb-8 flex justify-center content-center">
+          <HilbertThreeRenderer
+            initN={2}
+            initP={4}
+            initPipeThickness={0.3}
+            initGeometryType={"round"}
+            isControlEnabled={false}
+            isSpinning={false}
+          />
+        </div>
         <Section>
           <p>
             I recently{" "}
@@ -41,11 +51,10 @@ const HilbertCurves1 = () => {
             "RC"), I committed to self-study a list of technologies, languages,
             and concepts:
           </p>
-          <ul className="list-disc pl-8">
+          <ul className="list-disc pl-8 mt-2">
             <li>
-              A compiled high-performance programming language (I decided on{" "}
-              <Link target="https://www.rust-lang.org/" displayTarget="Rust" />{" "}
-              )
+              A compiled high-performance programming language (
+              <Link target="https://www.rust-lang.org/" displayTarget="Rust" />)
             </li>
             <li>
               Low-level computer hardware through the{" "}
@@ -77,17 +86,41 @@ const HilbertCurves1 = () => {
           generating space-filling curves.
         </Section>
 
-        <div className=" w-full h-72 flex justify-center content-center">
-          <HilbertThreeRenderer
-            initN={2}
-            initP={1}
-            initPipeThickness={0.3}
-            initGeometryType={"square"}
-            isControlEnabled={false}
-          />
-        </div>
-
-        <Section></Section>
+        <Section>
+          <h3 className="font-bold text-2xl underline mb-2">
+            Background and Motivation
+          </h3>
+          <p>
+            When I started this project, I had just finished an OBJ file
+            renderer using WebGL, Rust, and WebAssembly. That project was a
+            webpage that rendered a complex 40,000 vertex 3D model, and allowed
+            to user to rotate that model in realtime with mouse controls. I had
+            taken on that project with the intention of learning more about Rust
+            and WebAssembly. After finishing, I felt much stronger on the core
+            principles of Rust and WebAssembly using{" "}
+            <Link
+              target={"https://docs.rs/wasm-bindgen/0.2.85/wasm_bindgen/"}
+              displayTarget={"Wasm-Bindgen"}
+            ></Link>
+            , but I felt I hadn't taken full advantage of WASM's performance or
+            Rust's type system.
+          </p>
+        </Section>
+        <Section>
+          <p>
+            For my next project, I set out to take full advantage of Rust and
+            WebAssembly by generating geometries in real-time. The only question
+            was "What geometry was both visually interesting and industrially
+            useful enough to build a project around?". My answer is Hilbert
+            Curves.
+          </p>
+        </Section>
+        <Section>
+          <h3 className="font-bold text-2xl underline mb-2">
+            So what is a Hilbert Curve?
+          </h3>
+          <p></p>
+        </Section>
       </article>
     </div>
   );
