@@ -7,7 +7,14 @@ import BlogPostMetaDataDisplay from "../../components/BlogPosts/BlogPostMetaData
 import HilbertThreeRenderer from "../../components/HilbertThreeRenderer";
 import Link from "../../components/Link";
 import NextLink from "next/link";
-import GithubGist from "../../components/BlogPosts/GithubGist";
+import DarkCodeBlock from "../../components/BlogPosts/DarkCodeBlock";
+import {
+  CodeBlock,
+  dracula,
+  irBlack,
+  obsidian,
+  paraisoDark,
+} from "react-code-blocks";
 
 const HilbertCurves4 = () => {
   const HilbertCurves1Metadata: BlogPostMetaDataType = BlogPostMetaDataSet[3];
@@ -92,7 +99,7 @@ const HilbertCurves4 = () => {
         </Section>
         <Section>
           <h3 className="font-bold text-2xl underline mb-2">
-            Hilbert Curves as a transformation of Binary Reflected Gray Codes
+            Hilbert Curves as a Transformation of Binary Reflected Gray Codes
           </h3>
           <p className="mb-8 ">
             The algorithm I set out to recreate was proposed by John Skilling in
@@ -105,10 +112,23 @@ const HilbertCurves4 = () => {
             wouldn't use bitwise operators in my code examples, but the
             generation of BRGC's isn't the core of this blog post.)
           </p>
-          <GithubGist
-            gist_url={
-              "https://gist.github.com/benjaminwgordon/056093dcdc1ad77b60174ed65573aedc.js"
-            }
+          <DarkCodeBlock
+            text={`#[derive(Debug)]
+pub struct Brgc {
+    // callers will typically create the iterator with index = 0
+    pub index: u32,
+}
+
+impl Iterator for Brgc {
+    type Item = u32;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        let gray = self.index ^ (self.index >> 1);
+        self.index += 1;
+        Some(gray)
+    }
+}`}
+            language={"rust"}
           />
           <p className="mb-8 ">
             Implenting BRGC's as an iterator is particularly useful for my
@@ -120,10 +140,32 @@ const HilbertCurves4 = () => {
             Here is an example of the iterator being used to print the first 16
             BRGC codes:
           </p>
-          <GithubGist
-            gist_url={
-              "https://gist.github.com/benjaminwgordon/649eb7bc17018ecae2dc0e19265e17ef.js"
-            }
+          <DarkCodeBlock
+            text={`fn main() {
+    let brgc = Brgc { index: 0 };
+    brgc.take(16).for_each(|code| {
+        println!("{:04b}", code);
+    })
+}
+
+// Results in the first 16 BRGC codes:
+0000
+0001
+0011
+0010
+0110
+0111
+0101
+0100
+1100
+1101
+1111
+1110
+1010
+1011
+1001
+1000`}
+            language={"rust"}
           />
           <p className="mb-8 ">
             Note that in the above example, each binary number in the BRGC

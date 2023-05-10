@@ -73,7 +73,7 @@ const HilbertCurves3 = () => {
           </div>
           <div className="flex flex-row justify-end">
             <button className="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 text-xl rounded-md self-end">
-              <NextLink href={"/blog/HilbertCurves2"}>Next Post</NextLink>
+              <NextLink href={"/blog/HilbertCurves4"}>Next Post</NextLink>
             </button>
           </div>
         </Section>
