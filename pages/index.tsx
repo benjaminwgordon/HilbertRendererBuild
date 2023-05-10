@@ -18,6 +18,8 @@ function HomePage() {
           initGeometryType={"square"}
           isControlEnabled={false}
           isSpinning={true}
+          isCameraOffSetY={true}
+          rotationSpeed={0.006}
         />
       </div>
     </div>

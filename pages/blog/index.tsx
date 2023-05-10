@@ -1,18 +1,19 @@
 import React from "react";
-import Link from "next/link";
 import BlogPostMetaDataSet from "../../components/BlogPosts/BlogPostMetaDataSet";
 import { BlogPageLayout } from "./BlogPageLayout";
+import Link from "../../components/Link";
 
 const BlogPage = () => {
   const AllBlogPostMetaData = BlogPostMetaDataSet;
 
   return (
-    <ul>
+    <ul className="h-full list-disc">
       {AllBlogPostMetaData.map((postMetaData) => (
-        <li key={postMetaData.id} className="text-blue-300">
-          <Link href={`/blog/${encodeURIComponent(postMetaData.slug)}`}>
-            {postMetaData.title}
-          </Link>
+        <li key={postMetaData.id} className="text-blue-600 hover:text-blue-800">
+          <Link
+            target={`/blog/${postMetaData.slug}`}
+            displayTarget={postMetaData.title}
+          />
         </li>
       ))}
     </ul>

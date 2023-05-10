@@ -11,11 +11,11 @@ export default function App({ Component, pageProps }) {
   };
 
   return (
-    <div className="bg-gray-50 h-full">
+    <div className="bg-gray-50 h-full min-h-screen">
       <header>
         <Navbar />
       </header>
-      <section>
+      <section className="h-full min-h-screen relative ">
         <Layout Component={Component} pageProps={pageProps} />
       </section>
     </div>

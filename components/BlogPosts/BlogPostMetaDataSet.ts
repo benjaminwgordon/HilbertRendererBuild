@@ -11,9 +11,30 @@ const BlogPostMetaDataSet: BlogPostMetadataType[] = [
   {
     id: 1,
     slug: "HilbertCurves2",
-    title: "Calculating 3D Hilbert Curve Geometry using the Skilling Transform",
+    title: "Hilbert Curves in 3 Dimensions",
     author: "Ben Gordon",
-    publishDate: new Date(2023, 4, 6),
+    publishDate: new Date(2023, 4, 7),
+  },
+  {
+    id: 2,
+    slug: "HilbertCurves3",
+    title: "A 3D Hilbert Curve Sandbox in Your Browser",
+    author: "Ben Gordon",
+    publishDate: new Date(2023, 4, 8),
+  },
+  {
+    id: 3,
+    slug: "HilbertCurves4",
+    title: "Hilbert Curves as a Transformation of Binary Reflected Gray Codes",
+    author: "Ben Gordon",
+    publishDate: new Date(2023, 4, 9),
+  },
+  {
+    id: 4,
+    slug: "HilbertCurves5",
+    title: "Rendering Hilbert Curves in the Browser using ThreeJS",
+    author: "Ben Gordon",
+    publishDate: new Date(2023, 4, 9),
   },
 ];
 
