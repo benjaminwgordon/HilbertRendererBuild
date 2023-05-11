@@ -32,6 +32,18 @@ const HilbertCurves4 = () => {
         />
 
         <Section>
+          <div className="w-full h-96 mb-8 flex justify-center content-center">
+            <HilbertThreeRenderer
+              initN={2}
+              initP={5}
+              initPipeThickness={0.3}
+              initGeometryType={"square"}
+              isControlEnabled={false}
+              isSpinning={true}
+              rotationSpeed={0.003}
+              isCameraOffSetY={false}
+            />
+          </div>
           <p className="mb-8">
             This is part 4 of a series on Hilbert Curves. To start from the
             beginning, please visit{" "}
@@ -42,9 +54,9 @@ const HilbertCurves4 = () => {
           </p>
           <p className="mb-8">
             Fair warning, this is the part where we dig into the algorithm
-            behind my implementation of Hilbert Curve generation. If you landed
-            on this blog to see cool 3D generative geometry and you don't want
-            to see any math, then{" "}
+            behind my implementation of Hilbert Curve Coordinate generation. If
+            you landed on this blog to see 3D generative geometry and you don't
+            want to see any math, then{" "}
             <Link
               target={"/blog/HilbertCurves3"}
               displayTarget={"Hilbert Curve Sandbox"}
@@ -73,11 +85,11 @@ const HilbertCurves4 = () => {
               {" "}
               The Skilling Transform requires precise bit manipulation, but I
               expect that most of us (including me), aren't using bitwise
-              operators regularly in our day jobs. Anywhere where bit
-              manipulation of unsigned integers would have been optimal, I have
-              chosen to instead represent the numbers as arrays of booleans.
-              While the resulting code will be substantially slower to execute,
-              I hope this will make the code signifigantly more accessible.
+              operators regularly in our day jobs. Anywhere where bitwise
+              manipulation of integers would have been optimal, I have chosen to
+              instead represent the numbers as arrays of booleans. While the
+              resulting code may be slower to execute, I hope this will make the
+              code more accessible.
             </p>
           </section>
         </Section>
@@ -137,7 +149,7 @@ impl Iterator for Brgc {
             order of the Hilbert Curve.
           </p>
           <p className="mb-8 ">
-            Here is an example of the iterator being used to print the first 16
+            Here is an example of the iterator being used to print the first 8
             BRGC codes:
           </p>
           <DarkCodeBlock
@@ -148,7 +160,7 @@ impl Iterator for Brgc {
     })
 }
 
-  // Results in the first 16 BRGC codes:
+  // Results in the first 8 BRGC codes:
   000
   001
   011
@@ -174,8 +186,7 @@ impl Iterator for Brgc {
           <p className="mb-8 ">
             This will become more clear once we work through another core
             principle of this algorithm: assigning bits of the gray codes to
-            axes in a vector. Each of the 3 bits in each gray code can be
-            assigned to an axis
+            axes in a 2D or 3D vector.
           </p>
           <p className="mb-8 ">
             For example, using the bit string 110 we can map the digits to 3
@@ -279,7 +290,7 @@ impl Iterator for Brgc {
                 "110010",
               ].map((brgc) => {
                 return (
-                  <tr>
+                  <tr key={brgc}>
                     <td className="border p-1 px-4">{brgc}</td>
                     <td className="border p-1 px-4">
                       {`(${brgc.charAt(0)}${brgc.charAt(3)}, ${brgc.charAt(
@@ -319,20 +330,58 @@ impl Iterator for Brgc {
           </ul>
           <p className="pb-8">
             This mapping of the BRGC's to Vertices accomplishes goal #1 (each
-            sequential pair only changes in x, y, or z), but the length of the x
-            component of the vector is more than 1 when we jump from 010000 to
-            110000, since the x component moves from 0 to 2.
+            sequential pair only changes in x, y, or z), but fails goal #2. The
+            length of the x component of the vector is more than 1 when we jump
+            from 010000 to 110000, since the x component moves from 0 to 2.
           </p>
-          <p>
+          <p className="pb-8">
             Even though the generated coordinates aren't quite right yet, this
             pattern of extracting the x, y, and z components a binary string
             will still be the first step in our final algorithm. Below is my
             Rust code that seperates out the (x,y,z) components from a u32.
             Since both 2D and 3D curves are of interest to me for rendering,
-            this code supports breaking a u32 into both (x,y) and (x,y,z)
-            components based on a variable "n" with represents the number of
-            dimensions to process. ("n=2" is 2D, "n=3" is 3D)
+            there is a seperate function that supports breaking a u32 into 2D
+            coordinates.
           </p>
+          <DarkCodeBlock
+            text={`pub fn into_xyz_binary_3d(hilbert_coordinates: u32, n: u32, p: u32) -> (u32, u32, u32) {
+    let binary_hilbert_encoded_coordinates = format!("{:b}", hilbert_coordinates);
+    // insert any necessary leading zeros so that the string is N * P characters
+    // this is necessary to ensure each bit is correctly
+    // assigned to its x,y, or z axis
+    let mut padding = String::new();
+    while binary_hilbert_encoded_coordinates.len() + padding.len() < (n * p) as usize {
+        padding.push_str("0");
+    }
+    padding.push_str(&binary_hilbert_encoded_coordinates);
+    let padded_hilbert_coordinate_string = padding;
+
+    // take every nth character and assign it to its axis
+    // three axis decoding, x,y,z coordinates
+    let x = padded_hilbert_coordinate_string
+        .chars()
+        .step_by(3)
+        .collect::<String>()
+        .parse::<u32>()
+        .unwrap();
+    let y = padded_hilbert_coordinate_string
+        .chars()
+        .skip(1)
+        .step_by(3)
+        .collect::<String>()
+        .parse::<u32>()
+        .unwrap();
+    let z = padded_hilbert_coordinate_string
+        .chars()
+        .skip(2)
+        .step_by(3)
+        .collect::<String>()
+        .parse::<u32>()
+        .unwrap();
+    (x, y, z)
+}`}
+            language={"rust"}
+          />
         </Section>
         <Section>
           <h3 className="font-bold text-2xl underline mb-2">
@@ -346,12 +395,42 @@ impl Iterator for Brgc {
             correct positions. This is where the algorithm proposed by John
             Skilling enters the picture.
           </p>
+          <p className="pb-8">
+            Here is the algorithm as described by John Skilling. There is a fair
+            bit of ambiguous language, so I'll follow up with an explanation,
+            and my implementation.
+          </p>
+          <DarkCodeBlock
+            text={`for (r = p - 2, p - 3, ..., 1, 0)
+  for (i = n - 1, n - 2, ..., 1, 0)
+    if (bit r of Xi if OFF)
+      exchange low bits r + 1, r + 2, ..., p - 1, of Xi and X0
+    else
+      invert low bits of X0`}
+            language={"text"}
+          />
+          <p className="mb-8">
+            Essentially, we want to walk through each bit of the brgc, starting
+            at the lowest-order bit and walking left. For each bit, we check to
+            see whether that bit is 0 or 1. Depending on that result, we perform
+            one of two types of bit swapping operations. I'll call these two
+            operations <span className="font-bold italic">exchange</span> and{" "}
+            <span className="font-bold italic">invert</span>, and provide a
+            visual explanation of each below.
+          </p>
         </Section>
-        <p className="mb-8"></p>
 
+        <Section>
+          <h3 className="font-bold text-2xl underline mb-2">
+            The Invert Operation
+          </h3>{" "}
+          <p className="mb-8">
+            We will start with the inversion operation, as it is simpler.
+          </p>
+        </Section>
         <div className="flex flex-row">
           <button className="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 text-xl rounded-md self-end">
-            <NextLink href={"/blog/HilbertCurves2"}>Next Post</NextLink>
+            <NextLink href={"/blog/HilbertCurves5"}>Next Post</NextLink>
           </button>
         </div>
       </article>

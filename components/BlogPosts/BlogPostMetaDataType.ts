@@ -3,7 +3,7 @@ type BlogPostMetadataType = {
   slug: string;
   title: string;
   author: string;
-  publishDate: Date;
+  publishDate: Date | null;
 };
 
 export default BlogPostMetadataType;

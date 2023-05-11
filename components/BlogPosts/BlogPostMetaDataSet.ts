@@ -34,7 +34,7 @@ const BlogPostMetaDataSet: BlogPostMetadataType[] = [
     slug: "HilbertCurves5",
     title: "Rendering Hilbert Curves in the Browser using ThreeJS",
     author: "Ben Gordon",
-    publishDate: new Date(2023, 4, 9),
+    publishDate: null,
   },
 ];
 
