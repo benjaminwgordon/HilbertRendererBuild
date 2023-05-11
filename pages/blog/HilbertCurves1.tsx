@@ -38,7 +38,7 @@ const HilbertCurves1 = () => {
             I recently{" "}
             <Link
               target="https://www.recurse.com/about"
-              displayTarget="never graduated"
+              displayTarget={`\"never graduated\"`}
             />{" "}
             from the Recurse Center, a self-directed, community-driven
             educational retreat for programmers in New York City. The Recurse
@@ -86,8 +86,8 @@ const HilbertCurves1 = () => {
         <Section>
           In this blog post, I'm going to focus primarily on Rust and 3D
           Graphics, and the unexpected journey I undertook through the land of
-          Rust, Web Assembly, ThreeJS, and exploring fun algorithms for
-          generating space-filling curves.
+          Rust, Web Assembly, ThreeJS, and algorithms for generating
+          space-filling curves.
         </Section>
 
         <Section>
@@ -115,7 +115,7 @@ const HilbertCurves1 = () => {
             For my next project, I set out to take full advantage of Rust and
             WebAssembly by generating geometries in real-time. The only question
             was "What geometry was both visually interesting and industrially
-            useful enough to build a project around?". My answer is Hilbert
+            useful enough to build a project around?" My answer is Hilbert
             Curves.
           </p>
         </Section>

@@ -16,8 +16,8 @@ const Navbar = () => {
       name: "Blog",
     },
     {
-      route: "/about",
-      name: "About Me",
+      route: "/hire-me",
+      name: "Hire Me",
     },
   ];
 

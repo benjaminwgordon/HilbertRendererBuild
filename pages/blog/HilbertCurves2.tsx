@@ -35,7 +35,7 @@ const HilbertCurves2 = () => {
         </div>
         <Section>
           <h3 className="font-bold text-2xl underline mb-2">
-            Why do you keep saying 2D?
+            Exploring New Dimensions
           </h3>
           <p className="mb-8">
             You may have noticed that in{" "}

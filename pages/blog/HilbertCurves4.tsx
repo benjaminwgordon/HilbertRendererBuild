@@ -182,56 +182,59 @@ impl Iterator for Brgc {
             axes:{" "}
           </p>
           <table className="text-xl mb-8">
-            <th></th>
-            <tr className="border">
-              <td className="border p-1 px-2">x</td>
-              <td className="border p-1 px-2">y</td>
-              <td className="border p-1 px-2">z</td>
-            </tr>
-            <tr className="border">
-              <td className="border p-1 px-2">1</td>
-              <td className="border p-1 px-2">1</td>
-              <td className="border p-1 px-2">0</td>
-            </tr>
+            <tbody>
+              <tr className="border">
+                <td className="border p-1 px-2">x</td>
+                <td className="border p-1 px-2">y</td>
+                <td className="border p-1 px-2">z</td>
+              </tr>
+              <tr className="border">
+                <td className="border p-1 px-2">1</td>
+                <td className="border p-1 px-2">1</td>
+                <td className="border p-1 px-2">0</td>
+              </tr>
+            </tbody>
           </table>
           <p className="mb-8 ">
             When the bit string is longer, we can assign digits by rotation, for
             example 011010:{" "}
           </p>
           <table className="text-xl mb-8 text-center">
-            <th></th>
-            <tr className="border">
-              <td className="border p-1 px-4">x</td>
-              <td className="border p-1 px-4">y</td>
-              <td className="border p-1 px-4">z</td>
-              <td className="border p-1 px-4">x</td>
-              <td className="border p-1 px-4">y</td>
-              <td className="border p-1 px-4">z</td>
-            </tr>
-            <tr className="border">
-              <td className="border p-1 px-4">0</td>
-              <td className="border p-1 px-4">1</td>
-              <td className="border p-1 px-4">1</td>
-              <td className="border p-1 px-4">0</td>
-              <td className="border p-1 px-4">1</td>
-              <td className="border p-1 px-4">0</td>
-            </tr>
+            <tbody>
+              <tr className="border">
+                <td className="border p-1 px-4">x</td>
+                <td className="border p-1 px-4">y</td>
+                <td className="border p-1 px-4">z</td>
+                <td className="border p-1 px-4">x</td>
+                <td className="border p-1 px-4">y</td>
+                <td className="border p-1 px-4">z</td>
+              </tr>
+              <tr className="border">
+                <td className="border p-1 px-4">0</td>
+                <td className="border p-1 px-4">1</td>
+                <td className="border p-1 px-4">1</td>
+                <td className="border p-1 px-4">0</td>
+                <td className="border p-1 px-4">1</td>
+                <td className="border p-1 px-4">0</td>
+              </tr>
+            </tbody>
           </table>
           <p className="mb-8 ">
             Then, we can combine the x, y, and z bits respectively:
           </p>
           <table className="text-xl mb-8 text-center">
-            <th></th>
-            <tr className="border">
-              <td className="border p-1 px-4">x</td>
-              <td className="border p-1 px-4">y</td>
-              <td className="border p-1 px-4">z</td>
-            </tr>
-            <tr className="border">
-              <td className="border p-1 px-4">00</td>
-              <td className="border p-1 px-4">11</td>
-              <td className="border p-1 px-4">10</td>
-            </tr>
+            <tbody>
+              <tr className="border">
+                <td className="border p-1 px-4">x</td>
+                <td className="border p-1 px-4">y</td>
+                <td className="border p-1 px-4">z</td>
+              </tr>
+              <tr className="border">
+                <td className="border p-1 px-4">00</td>
+                <td className="border p-1 px-4">11</td>
+                <td className="border p-1 px-4">10</td>
+              </tr>
+            </tbody>
           </table>
           <p className="mb-8 ">
             Converting these from binary into decimal integers results in the x,
@@ -239,18 +242,110 @@ impl Iterator for Brgc {
             for this vertex.
           </p>
           <table className="text-xl mb-8 text-center">
-            <th></th>
-            <tr className="border">
-              <td className="border p-1 px-4">x</td>
-              <td className="border p-1 px-4">y</td>
-              <td className="border p-1 px-4">z</td>
-            </tr>
-            <tr className="border">
-              <td className="border p-1 px-4">0</td>
-              <td className="border p-1 px-4">3</td>
-              <td className="border p-1 px-4">2</td>
-            </tr>
+            <tbody>
+              <tr className="border">
+                <td className="border p-1 px-4">x</td>
+                <td className="border p-1 px-4">y</td>
+                <td className="border p-1 px-4">z</td>
+              </tr>
+              <tr className="border">
+                <td className="border p-1 px-4">0</td>
+                <td className="border p-1 px-4">3</td>
+                <td className="border p-1 px-4">2</td>
+              </tr>
+            </tbody>
           </table>
+          <p className="mb-8 ">
+            If we perform this operation for the first 8 BRGC numbers, we can
+            see get 8 vertex coordinates in 3D:
+          </p>
+          <table className="text-xl mb-8 text-center">
+            <thead>
+              <tr>
+                <th className="border p-1 px-4">BRGC</th>
+                <th className="border p-1 px-4">Binary (x,y,z)</th>
+                <th className="border p-1 px-4">Decimal (x,y,z)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                "010010",
+                "010011",
+                "010001",
+                "010000",
+                "110000",
+                "110001",
+                "110011",
+                "110010",
+              ].map((brgc) => {
+                return (
+                  <tr>
+                    <td className="border p-1 px-4">{brgc}</td>
+                    <td className="border p-1 px-4">
+                      {`(${brgc.charAt(0)}${brgc.charAt(3)}, ${brgc.charAt(
+                        1
+                      )}${brgc.charAt(4)}, ${brgc.charAt(2)}${brgc.charAt(5)})`}
+                    </td>
+                    <td className="border p-1 px-4">
+                      {`(${parseInt(
+                        brgc.charAt(0) + brgc.charAt(3),
+                        2
+                      )}, ${parseInt(
+                        brgc.charAt(1) + brgc.charAt(4),
+                        2
+                      )}, ${parseInt(brgc.charAt(2) + brgc.charAt(5), 2)})`}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          <p className="mb-2 ">
+            It would be very nice if these happened to be the coordinates to the
+            first 8 vertices of a Hilbert Curve, but there is a big problem with
+            the data we've generated so far. Let's review a few rules we've set
+            for a Hilbert Curve:
+          </p>
+          <p className="mb-2 ">
+            For each pair of sequential vertices, the vector between them must
+            follow these rules:
+          </p>
+          <ul className="list-disc ml-8 mb-8">
+            <li>
+              The vector should change in x, y, or z (exclusively). This makes
+              the line vertical or horizontal.
+            </li>
+            <li>The vector should have length 1</li>
+          </ul>
+          <p className="pb-8">
+            This mapping of the BRGC's to Vertices accomplishes goal #1 (each
+            sequential pair only changes in x, y, or z), but the length of the x
+            component of the vector is more than 1 when we jump from 010000 to
+            110000, since the x component moves from 0 to 2.
+          </p>
+          <p>
+            Even though the generated coordinates aren't quite right yet, this
+            pattern of extracting the x, y, and z components a binary string
+            will still be the first step in our final algorithm. Below is my
+            Rust code that seperates out the (x,y,z) components from a u32.
+            Since both 2D and 3D curves are of interest to me for rendering,
+            this code supports breaking a u32 into both (x,y) and (x,y,z)
+            components based on a variable "n" with represents the number of
+            dimensions to process. ("n=2" is 2D, "n=3" is 3D)
+          </p>
+        </Section>
+        <Section>
+          <h3 className="font-bold text-2xl underline mb-2">
+            Undoing Excess Rotation with the Skilling Transform
+          </h3>
+          <p className="pb-8">
+            As it turns out, the vertex positions we've generated by mapping the
+            BRGCs are the result of applying too many rotations to the
+            underlying lower-order Hilbert Curves. What we need now is a way to
+            "undo" excess rotations to bring these vertices back into their
+            correct positions. This is where the algorithm proposed by John
+            Skilling enters the picture.
+          </p>
         </Section>
         <p className="mb-8"></p>
 
