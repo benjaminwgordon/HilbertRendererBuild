@@ -39,16 +39,17 @@ const HilbertCurves3 = () => {
             Hilbert Curve.
           </p>
 
-          <p className="mb-8">
-            One word of caution, the performance of this sandbox is heavily
-            reliant on the power of your graphics card. Computers with less
-            recent hardware will see signifigant slowdown when increasing the
-            magnitude of the Hilbert Curve. If you are visiting this site on
-            mobile, or a computer with older hardware, you will likely see the
-            best results with Hilbert Curves of order 4 or less. (The initial
-            curve is of order 3)
-          </p>
-
+          <div className="bg-gray-200 p-6 rounded-md mb-8">
+            <p className="">
+              One word of caution, the performance of this sandbox is heavily
+              reliant on the power of your graphics card. Computers with less
+              recent hardware will see signifigant slowdown when increasing the
+              magnitude of the Hilbert Curve. If you are visiting this site on
+              mobile, or a computer with older hardware, you will likely see the
+              best results with Hilbert Curves of order 4 or less. (The initial
+              curve is of order 3)
+            </p>
+          </div>
           <p className="mb-8">
             Once you are done, check out the next post in the series where I dig
             into the algorithm I use to generate the Hilbert Geometry:{" "}
@@ -57,7 +58,7 @@ const HilbertCurves3 = () => {
               displayTarget={BlogPostMetaDataSet[3].title}
             />
           </p>
-          <div className="m-auto w-screen left-0 h-screen flex justify-center">
+          <div className="m-auto w-screen left-0 h-screen flex justify-center pb-8">
             <div className=" w-full flex justify-center content-center">
               <HilbertThreeRenderer
                 initN={3}
@@ -71,7 +72,7 @@ const HilbertCurves3 = () => {
               />
             </div>
           </div>
-          <div className="flex flex-row justify-end">
+          <div className="flex flex-row">
             <button className="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 text-xl rounded-md self-end">
               <NextLink href={"/blog/HilbertCurves4"}>Next Post</NextLink>
             </button>

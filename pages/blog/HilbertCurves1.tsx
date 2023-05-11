@@ -275,7 +275,7 @@ const HilbertCurves1 = () => {
             <Link target={"/blog/HilbertCurves2"} displayTarget={"Part 2"} /> of
             this series!
           </p>
-          <div className="flex flex-row justify-end">
+          <div className="flex flex-row">
             <button className="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 text-xl rounded-md self-end">
               <NextLink href={"/blog/HilbertCurves2"}>Next Post</NextLink>
             </button>

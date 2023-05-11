@@ -2,5 +2,5 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/blog/HilbertCurves4": "pages/blog/HilbertCurves4.js"
+  "/about": "pages/about.js"
 }

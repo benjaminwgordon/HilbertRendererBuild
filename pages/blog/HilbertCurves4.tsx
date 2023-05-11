@@ -143,28 +143,21 @@ impl Iterator for Brgc {
           <DarkCodeBlock
             text={`fn main() {
     let brgc = Brgc { index: 0 };
-    brgc.take(16).for_each(|code| {
-        println!("{:04b}", code);
+    brgc.take(8).for_each(|code| {
+        println!("{:03b}", code);
     })
 }
 
-// Results in the first 16 BRGC codes:
-0000
-0001
-0011
-0010
-0110
-0111
-0101
-0100
-1100
-1101
-1111
-1110
-1010
-1011
-1001
-1000`}
+  // Results in the first 16 BRGC codes:
+  000
+  001
+  011
+  010
+  110
+  111
+  101
+  100
+  `}
             language={"rust"}
           />
           <p className="mb-8 ">
@@ -178,10 +171,90 @@ impl Iterator for Brgc {
             basis for our algorithm gives us a head-start on creating that
             behavior in our resulting Hilbert Curves.
           </p>
+          <p className="mb-8 ">
+            This will become more clear once we work through another core
+            principle of this algorithm: assigning bits of the gray codes to
+            axes in a vector. Each of the 3 bits in each gray code can be
+            assigned to an axis
+          </p>
+          <p className="mb-8 ">
+            For example, using the bit string 110 we can map the digits to 3
+            axes:{" "}
+          </p>
+          <table className="text-xl mb-8">
+            <th></th>
+            <tr className="border">
+              <td className="border p-1 px-2">x</td>
+              <td className="border p-1 px-2">y</td>
+              <td className="border p-1 px-2">z</td>
+            </tr>
+            <tr className="border">
+              <td className="border p-1 px-2">1</td>
+              <td className="border p-1 px-2">1</td>
+              <td className="border p-1 px-2">0</td>
+            </tr>
+          </table>
+          <p className="mb-8 ">
+            When the bit string is longer, we can assign digits by rotation, for
+            example 011010:{" "}
+          </p>
+          <table className="text-xl mb-8 text-center">
+            <th></th>
+            <tr className="border">
+              <td className="border p-1 px-4">x</td>
+              <td className="border p-1 px-4">y</td>
+              <td className="border p-1 px-4">z</td>
+              <td className="border p-1 px-4">x</td>
+              <td className="border p-1 px-4">y</td>
+              <td className="border p-1 px-4">z</td>
+            </tr>
+            <tr className="border">
+              <td className="border p-1 px-4">0</td>
+              <td className="border p-1 px-4">1</td>
+              <td className="border p-1 px-4">1</td>
+              <td className="border p-1 px-4">0</td>
+              <td className="border p-1 px-4">1</td>
+              <td className="border p-1 px-4">0</td>
+            </tr>
+          </table>
+          <p className="mb-8 ">
+            Then, we can combine the x, y, and z bits respectively:
+          </p>
+          <table className="text-xl mb-8 text-center">
+            <th></th>
+            <tr className="border">
+              <td className="border p-1 px-4">x</td>
+              <td className="border p-1 px-4">y</td>
+              <td className="border p-1 px-4">z</td>
+            </tr>
+            <tr className="border">
+              <td className="border p-1 px-4">00</td>
+              <td className="border p-1 px-4">11</td>
+              <td className="border p-1 px-4">10</td>
+            </tr>
+          </table>
+          <p className="mb-8 ">
+            Converting these from binary into decimal integers results in the x,
+            y, and z components of a 3D Vector, which can be used as a position
+            for this vertex.
+          </p>
+          <table className="text-xl mb-8 text-center">
+            <th></th>
+            <tr className="border">
+              <td className="border p-1 px-4">x</td>
+              <td className="border p-1 px-4">y</td>
+              <td className="border p-1 px-4">z</td>
+            </tr>
+            <tr className="border">
+              <td className="border p-1 px-4">0</td>
+              <td className="border p-1 px-4">3</td>
+              <td className="border p-1 px-4">2</td>
+            </tr>
+          </table>
         </Section>
         <p className="mb-8"></p>
 
-        <div className="flex flex-row justify-end">
+        <div className="flex flex-row">
           <button className="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 text-xl rounded-md self-end">
             <NextLink href={"/blog/HilbertCurves2"}>Next Post</NextLink>
           </button>
