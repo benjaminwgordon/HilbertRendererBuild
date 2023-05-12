@@ -1,5 +1,5 @@
 import React from "react";
-import { BlogPageLayout } from "./blog/BlogPageLayout";
+import BlogPageLayout from "../components/BlogPosts/BlogPageLayout";
 
 const HireMe = () => {
   return <div>Hire Me</div>;

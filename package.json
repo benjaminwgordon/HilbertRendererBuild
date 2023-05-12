@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "next dev",
+    "build:wasm": "wasm-pack build --target bundler --release",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

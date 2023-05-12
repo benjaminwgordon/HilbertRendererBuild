@@ -2,7 +2,7 @@ import React from "react";
 import BlogPostMetaDataType from "../../components/BlogPosts/BlogPostMetaDataType";
 import BlogPostMetaDataSet from "../../components/BlogPosts/BlogPostMetaDataSet";
 import Section from "../../components/BlogPosts/Section";
-import { BlogPageLayout } from "./BlogPageLayout";
+import BlogPageLayout from "../../components/BlogPosts/BlogPageLayout";
 import BlogPostMetaDataDisplay from "../../components/BlogPosts/BlogPostMetaDataDisplay";
 import HilbertThreeRenderer from "../../components/HilbertThreeRenderer";
 import Link from "../../components/Link";

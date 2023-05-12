@@ -1,6 +1,6 @@
 import React from "react";
 import BlogPostMetaDataSet from "../../components/BlogPosts/BlogPostMetaDataSet";
-import { BlogPageLayout } from "./BlogPageLayout";
+import BlogPageLayout from "../../components/BlogPosts/BlogPageLayout";
 import Link from "../../components/Link";
 
 const BlogPage = () => {

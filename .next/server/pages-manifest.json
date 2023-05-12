@@ -1,14 +1,14 @@
 {
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
-  "/blog/BlogPageLayout": "pages/blog/BlogPageLayout.js",
-  "/blog/HilbertCurves1": "pages/blog/HilbertCurves1.js",
-  "/blog/HilbertCurves2": "pages/blog/HilbertCurves2.js",
-  "/blog/HilbertCurves3": "pages/blog/HilbertCurves3.js",
-  "/blog/HilbertCurves4": "pages/blog/HilbertCurves4.js",
-  "/blog/HilbertCurves5": "pages/blog/HilbertCurves5.js",
-  "/blog": "pages/blog.js",
-  "/hire-me": "pages/hire-me.js",
-  "/": "pages/index.js",
-  "/_document": "pages/_document.js"
+  "/blog/HilbertCurves1": "pages/blog/HilbertCurves1.html",
+  "/blog/HilbertCurves2": "pages/blog/HilbertCurves2.html",
+  "/blog/HilbertCurves3": "pages/blog/HilbertCurves3.html",
+  "/blog/HilbertCurves4": "pages/blog/HilbertCurves4.html",
+  "/blog/HilbertCurves5": "pages/blog/HilbertCurves5.html",
+  "/blog": "pages/blog.html",
+  "/": "pages/index.html",
+  "/hire-me": "pages/hire-me.html",
+  "/_document": "pages/_document.js",
+  "/404": "pages/404.html"
 }

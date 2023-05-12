@@ -5,7 +5,7 @@ exports.id = 820;
 exports.ids = [820];
 exports.modules = {
 
-/***/ 3499:
+/***/ "./node_modules/next/dist/pages/_error.js":
 /***/ ((module, exports, __webpack_require__) => {
 
 
@@ -18,9 +18,9 @@ Object.defineProperty(exports, "default", ({
         return Error;
     }
 }));
-const _interop_require_default = __webpack_require__(167);
-const _react = /*#__PURE__*/ _interop_require_default._(__webpack_require__(6689));
-const _head = /*#__PURE__*/ _interop_require_default._(__webpack_require__(2636));
+const _interop_require_default = __webpack_require__("./node_modules/@swc/helpers/cjs/_interop_require_default.cjs");
+const _react = /*#__PURE__*/ _interop_require_default._(__webpack_require__("react"));
+const _head = /*#__PURE__*/ _interop_require_default._(__webpack_require__("./node_modules/next/dist/shared/lib/head.js"));
 const statusCodes = {
     400: "Bad Request",
     404: "This page could not be found",
@@ -121,7 +121,7 @@ if ((typeof exports.default === "function" || typeof exports.default === "object
 
 /***/ }),
 
-/***/ 2636:
+/***/ "./node_modules/next/dist/shared/lib/head.js":
 /***/ ((module, exports, __webpack_require__) => {
 
 
@@ -144,14 +144,14 @@ _export(exports, {
         return _default;
     }
 });
-const _interop_require_default = __webpack_require__(167);
-const _interop_require_wildcard = __webpack_require__(8760);
-const _react = /*#__PURE__*/ _interop_require_wildcard._(__webpack_require__(6689));
-const _sideeffect = /*#__PURE__*/ _interop_require_default._(__webpack_require__(2470));
-const _ampcontext = __webpack_require__(3918);
-const _headmanagercontext = __webpack_require__(2796);
-const _ampmode = __webpack_require__(5732);
-const _warnonce = __webpack_require__(618);
+const _interop_require_default = __webpack_require__("./node_modules/@swc/helpers/cjs/_interop_require_default.cjs");
+const _interop_require_wildcard = __webpack_require__("./node_modules/@swc/helpers/cjs/_interop_require_wildcard.cjs");
+const _react = /*#__PURE__*/ _interop_require_wildcard._(__webpack_require__("react"));
+const _sideeffect = /*#__PURE__*/ _interop_require_default._(__webpack_require__("./side-effect"));
+const _ampcontext = __webpack_require__("./amp-context");
+const _headmanagercontext = __webpack_require__("./head-manager-context");
+const _ampmode = __webpack_require__("./amp-mode");
+const _warnonce = __webpack_require__("./utils/warn-once");
 function defaultHead(inAmpMode) {
     if (inAmpMode === void 0) inAmpMode = false;
     const head = [
@@ -300,49 +300,49 @@ if ((typeof exports.default === "function" || typeof exports.default === "object
 
 /***/ }),
 
-/***/ 3918:
+/***/ "./amp-context":
 /***/ ((module) => {
 
 module.exports = require("next/dist/shared/lib/amp-context.js");
 
 /***/ }),
 
-/***/ 5732:
+/***/ "./amp-mode":
 /***/ ((module) => {
 
 module.exports = require("next/dist/shared/lib/amp-mode.js");
 
 /***/ }),
 
-/***/ 2796:
+/***/ "./head-manager-context":
 /***/ ((module) => {
 
 module.exports = require("next/dist/shared/lib/head-manager-context.js");
 
 /***/ }),
 
-/***/ 2470:
+/***/ "./side-effect":
 /***/ ((module) => {
 
 module.exports = require("next/dist/shared/lib/side-effect.js");
 
 /***/ }),
 
-/***/ 618:
+/***/ "./utils/warn-once":
 /***/ ((module) => {
 
 module.exports = require("next/dist/shared/lib/utils/warn-once.js");
 
 /***/ }),
 
-/***/ 6689:
+/***/ "react":
 /***/ ((module) => {
 
 module.exports = require("react");
 
 /***/ }),
 
-/***/ 167:
+/***/ "./node_modules/@swc/helpers/cjs/_interop_require_default.cjs":
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -355,7 +355,7 @@ function _interop_require_default(obj) {
 
 /***/ }),
 
-/***/ 8760:
+/***/ "./node_modules/@swc/helpers/cjs/_interop_require_wildcard.cjs":
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -407,7 +407,7 @@ function _interop_require_wildcard(obj, nodeInterop) {
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = (__webpack_exec__(3499));
+var __webpack_exports__ = (__webpack_exec__("./node_modules/next/dist/pages/_error.js"));
 module.exports = __webpack_exports__;
 
 })();

@@ -4,7 +4,7 @@ import BlogPostMetaDataType from "../../components/BlogPosts/BlogPostMetaDataTyp
 import Section from "../../components/BlogPosts/Section";
 import HilbertThreeRenderer from "../../components/HilbertThreeRenderer";
 import Link from "../../components/Link";
-import { BlogPageLayout } from "./BlogPageLayout";
+import BlogPageLayout from "../../components/BlogPosts/BlogPageLayout";
 import BlogPostMetaDataDisplay from "../../components/BlogPosts/BlogPostMetaDataDisplay";
 import NextLink from "next/link";
 

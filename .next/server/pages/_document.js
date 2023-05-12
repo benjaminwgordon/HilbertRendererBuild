@@ -5,7 +5,7 @@ exports.id = 660;
 exports.ids = [660];
 exports.modules = {
 
-/***/ 2940:
+/***/ "./node_modules/next/dist/pages/_document.js":
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
@@ -39,12 +39,12 @@ _export(exports, {
         return Document;
     }
 });
-const _react = /*#__PURE__*/ _interop_require_wildcard(__webpack_require__(6689));
-const _constants = __webpack_require__(6724);
-const _getpagefiles = __webpack_require__(4140);
-const _htmlescape = __webpack_require__(9716);
-const _iserror = /*#__PURE__*/ _interop_require_default(__webpack_require__(676));
-const _htmlcontext = __webpack_require__(8743);
+const _react = /*#__PURE__*/ _interop_require_wildcard(__webpack_require__("react"));
+const _constants = __webpack_require__("../shared/lib/constants");
+const _getpagefiles = __webpack_require__("../server/get-page-files");
+const _htmlescape = __webpack_require__("../server/htmlescape");
+const _iserror = /*#__PURE__*/ _interop_require_default(__webpack_require__("./node_modules/next/dist/lib/is-error.js"));
+const _htmlcontext = __webpack_require__("../shared/lib/html-context");
 function _interop_require_default(obj) {
     return obj && obj.__esModule ? obj : {
         default: obj
@@ -551,7 +551,7 @@ class Head extends _react.default.Component {
             content: "width=device-width,minimum-scale=1,initial-scale=1"
         }), !hasCanonicalRel && /*#__PURE__*/ _react.default.createElement("link", {
             rel: "canonical",
-            href: canonicalBase + (__webpack_require__(6368).cleanAmpPath)(dangerousAsPath)
+            href: canonicalBase + (__webpack_require__("../server/utils").cleanAmpPath)(dangerousAsPath)
         }), /*#__PURE__*/ _react.default.createElement("link", {
             rel: "preload",
             as: "script",
@@ -652,7 +652,7 @@ class NextScript extends _react.default.Component {
                 return (0, _htmlescape.htmlEscapeJsonString)(data);
             }
             const bytes =  false ? 0 : Buffer.from(data).byteLength;
-            const prettyBytes = (__webpack_require__(5955)/* ["default"] */ .Z);
+            const prettyBytes = (__webpack_require__("./node_modules/next/dist/lib/pretty-bytes.js")/* ["default"] */ .Z);
             if (largePageDataBytes && bytes > largePageDataBytes) {
                 if (true) {
                     largePageDataWarnings.add(__NEXT_DATA__.page);
@@ -753,7 +753,7 @@ Document[_constants.NEXT_BUILTIN_DOCUMENT] = InternalFunctionDocument; //# sourc
 
 /***/ }),
 
-/***/ 676:
+/***/ "./node_modules/next/dist/lib/is-error.js":
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
@@ -775,7 +775,7 @@ _export(exports, {
         return getProperError;
     }
 });
-const _isplainobject = __webpack_require__(8524);
+const _isplainobject = __webpack_require__("../shared/lib/is-plain-object");
 function isError(err) {
     return typeof err === "object" && err !== null && "name" in err && "message" in err;
 }
@@ -791,7 +791,7 @@ function getProperError(err) {
 
 /***/ }),
 
-/***/ 5955:
+/***/ "./node_modules/next/dist/lib/pretty-bytes.js":
 /***/ ((__unused_webpack_module, exports) => {
 
 var __webpack_unused_export__;
@@ -868,49 +868,49 @@ function prettyBytes(number, options) {
 
 /***/ }),
 
-/***/ 4140:
+/***/ "../server/get-page-files":
 /***/ ((module) => {
 
 module.exports = require("next/dist/server/get-page-files.js");
 
 /***/ }),
 
-/***/ 9716:
+/***/ "../server/htmlescape":
 /***/ ((module) => {
 
 module.exports = require("next/dist/server/htmlescape.js");
 
 /***/ }),
 
-/***/ 6368:
+/***/ "../server/utils":
 /***/ ((module) => {
 
 module.exports = require("next/dist/server/utils.js");
 
 /***/ }),
 
-/***/ 6724:
+/***/ "../shared/lib/constants":
 /***/ ((module) => {
 
 module.exports = require("next/dist/shared/lib/constants.js");
 
 /***/ }),
 
-/***/ 8743:
+/***/ "../shared/lib/html-context":
 /***/ ((module) => {
 
 module.exports = require("next/dist/shared/lib/html-context.js");
 
 /***/ }),
 
-/***/ 8524:
+/***/ "../shared/lib/is-plain-object":
 /***/ ((module) => {
 
 module.exports = require("next/dist/shared/lib/is-plain-object.js");
 
 /***/ }),
 
-/***/ 6689:
+/***/ "react":
 /***/ ((module) => {
 
 module.exports = require("react");
@@ -924,7 +924,7 @@ module.exports = require("react");
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = (__webpack_exec__(2940));
+var __webpack_exports__ = (__webpack_exec__("./node_modules/next/dist/pages/_document.js"));
 module.exports = __webpack_exports__;
 
 })();

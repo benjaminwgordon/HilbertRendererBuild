@@ -4,7 +4,7 @@ exports.id = 888;
 exports.ids = [888];
 exports.modules = {
 
-/***/ 904:
+/***/ "./pages/_app.tsx":
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -17,9 +17,9 @@ __webpack_require__.d(__webpack_exports__, {
 });
 
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
-var jsx_runtime = __webpack_require__(5893);
+var jsx_runtime = __webpack_require__("./node_modules/react/jsx-runtime.js");
 // EXTERNAL MODULE: ./node_modules/next/link.js
-var next_link = __webpack_require__(1664);
+var next_link = __webpack_require__("./node_modules/next/link.js");
 var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
 ;// CONCATENATED MODULE: external "next/router"
 const router_namespaceObject = require("next/router");
@@ -67,7 +67,7 @@ const Navbar = ()=>{
 /* harmony default export */ const components_Navbar = (Navbar);
 
 // EXTERNAL MODULE: ./globals.css
-var globals = __webpack_require__(2379);
+var globals = __webpack_require__("./globals.css");
 ;// CONCATENATED MODULE: ./pages/_app.tsx
 
 
@@ -104,14 +104,14 @@ function App({ Component , pageProps  }) {
 
 /***/ }),
 
-/***/ 2379:
+/***/ "./globals.css":
 /***/ (() => {
 
 
 
 /***/ }),
 
-/***/ 3280:
+/***/ "../shared/lib/app-router-context":
 /***/ ((module) => {
 
 "use strict";
@@ -119,7 +119,7 @@ module.exports = require("next/dist/shared/lib/app-router-context.js");
 
 /***/ }),
 
-/***/ 4964:
+/***/ "../shared/lib/router-context":
 /***/ ((module) => {
 
 "use strict";
@@ -127,7 +127,7 @@ module.exports = require("next/dist/shared/lib/router-context.js");
 
 /***/ }),
 
-/***/ 1751:
+/***/ "../shared/lib/router/utils/add-path-prefix":
 /***/ ((module) => {
 
 "use strict";
@@ -135,7 +135,7 @@ module.exports = require("next/dist/shared/lib/router/utils/add-path-prefix.js")
 
 /***/ }),
 
-/***/ 3938:
+/***/ "../shared/lib/router/utils/format-url":
 /***/ ((module) => {
 
 "use strict";
@@ -143,7 +143,7 @@ module.exports = require("next/dist/shared/lib/router/utils/format-url.js");
 
 /***/ }),
 
-/***/ 1109:
+/***/ "../shared/lib/router/utils/is-local-url":
 /***/ ((module) => {
 
 "use strict";
@@ -151,7 +151,7 @@ module.exports = require("next/dist/shared/lib/router/utils/is-local-url.js");
 
 /***/ }),
 
-/***/ 8854:
+/***/ "../shared/lib/router/utils/parse-path":
 /***/ ((module) => {
 
 "use strict";
@@ -159,7 +159,7 @@ module.exports = require("next/dist/shared/lib/router/utils/parse-path.js");
 
 /***/ }),
 
-/***/ 3297:
+/***/ "../shared/lib/router/utils/remove-trailing-slash":
 /***/ ((module) => {
 
 "use strict";
@@ -167,7 +167,7 @@ module.exports = require("next/dist/shared/lib/router/utils/remove-trailing-slas
 
 /***/ }),
 
-/***/ 7782:
+/***/ "../shared/lib/router/utils/resolve-href":
 /***/ ((module) => {
 
 "use strict";
@@ -175,7 +175,7 @@ module.exports = require("next/dist/shared/lib/router/utils/resolve-href.js");
 
 /***/ }),
 
-/***/ 9232:
+/***/ "../shared/lib/utils":
 /***/ ((module) => {
 
 "use strict";
@@ -183,7 +183,7 @@ module.exports = require("next/dist/shared/lib/utils.js");
 
 /***/ }),
 
-/***/ 6689:
+/***/ "react":
 /***/ ((module) => {
 
 "use strict";
@@ -198,7 +198,7 @@ module.exports = require("react");
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [893,664], () => (__webpack_exec__(904)));
+var __webpack_exports__ = __webpack_require__.X(0, [893,664], () => (__webpack_exec__("./pages/_app.tsx")));
 module.exports = __webpack_exports__;
 
 })();
