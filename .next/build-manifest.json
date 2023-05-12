@@ -1,39 +1,94 @@
 {
   "polyfillFiles": [
-    "static/chunks/polyfills.js"
+    "static/chunks/polyfills-c67a75d1b6f99dc8.js"
   ],
-  "devFiles": [
-    "static/chunks/react-refresh.js"
-  ],
-  "ampDevFiles": [
-    "static/chunks/webpack.js",
-    "static/chunks/amp.js"
-  ],
+  "devFiles": [],
+  "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/development/_buildManifest.js",
-    "static/development/_ssgManifest.js"
+    "static/aFe7wLUObHIOJu4MimMue/_buildManifest.js",
+    "static/aFe7wLUObHIOJu4MimMue/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "pages": {
     "/": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/index.js"
+      "static/chunks/webpack-361045a862dcb90c.js",
+      "static/chunks/framework-d926de6f872b7d88.js",
+      "static/chunks/main-de431636bf14e4e8.js",
+      "static/chunks/fb7d5399-941a6941abd1fe57.js",
+      "static/chunks/140-6734f7aadae2925c.js",
+      "static/chunks/pages/index-490fa813fdc9bf9f.js"
     ],
     "/_app": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/_app.js"
+      "static/chunks/webpack-361045a862dcb90c.js",
+      "static/chunks/framework-d926de6f872b7d88.js",
+      "static/chunks/main-de431636bf14e4e8.js",
+      "static/css/dd8596c90fcd6a3f.css",
+      "static/chunks/pages/_app-4d2394184cc8fae4.js"
     ],
     "/_error": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/_error.js"
+      "static/chunks/webpack-361045a862dcb90c.js",
+      "static/chunks/framework-d926de6f872b7d88.js",
+      "static/chunks/main-de431636bf14e4e8.js",
+      "static/chunks/pages/_error-bd1da5a6907513b5.js"
+    ],
+    "/blog": [
+      "static/chunks/webpack-361045a862dcb90c.js",
+      "static/chunks/framework-d926de6f872b7d88.js",
+      "static/chunks/main-de431636bf14e4e8.js",
+      "static/chunks/pages/blog-cdf2839c557a35f1.js"
+    ],
+    "/blog/BlogPageLayout": [
+      "static/chunks/webpack-361045a862dcb90c.js",
+      "static/chunks/framework-d926de6f872b7d88.js",
+      "static/chunks/main-de431636bf14e4e8.js",
+      "static/chunks/pages/blog/BlogPageLayout-a4c8bda19941f1f8.js"
+    ],
+    "/blog/HilbertCurves1": [
+      "static/chunks/webpack-361045a862dcb90c.js",
+      "static/chunks/framework-d926de6f872b7d88.js",
+      "static/chunks/main-de431636bf14e4e8.js",
+      "static/chunks/fb7d5399-941a6941abd1fe57.js",
+      "static/chunks/140-6734f7aadae2925c.js",
+      "static/chunks/pages/blog/HilbertCurves1-e8635f713557562b.js"
+    ],
+    "/blog/HilbertCurves2": [
+      "static/chunks/webpack-361045a862dcb90c.js",
+      "static/chunks/framework-d926de6f872b7d88.js",
+      "static/chunks/main-de431636bf14e4e8.js",
+      "static/chunks/fb7d5399-941a6941abd1fe57.js",
+      "static/chunks/140-6734f7aadae2925c.js",
+      "static/chunks/pages/blog/HilbertCurves2-24ff1be972a71145.js"
+    ],
+    "/blog/HilbertCurves3": [
+      "static/chunks/webpack-361045a862dcb90c.js",
+      "static/chunks/framework-d926de6f872b7d88.js",
+      "static/chunks/main-de431636bf14e4e8.js",
+      "static/chunks/fb7d5399-941a6941abd1fe57.js",
+      "static/chunks/140-6734f7aadae2925c.js",
+      "static/chunks/pages/blog/HilbertCurves3-ab0e0a295e793a85.js"
     ],
     "/blog/HilbertCurves4": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/blog/HilbertCurves4.js"
+      "static/chunks/webpack-361045a862dcb90c.js",
+      "static/chunks/framework-d926de6f872b7d88.js",
+      "static/chunks/main-de431636bf14e4e8.js",
+      "static/chunks/fb7d5399-941a6941abd1fe57.js",
+      "static/chunks/140-6734f7aadae2925c.js",
+      "static/chunks/7249-3e69e34caca942bc.js",
+      "static/chunks/pages/blog/HilbertCurves4-3704556f914ee22d.js"
+    ],
+    "/blog/HilbertCurves5": [
+      "static/chunks/webpack-361045a862dcb90c.js",
+      "static/chunks/framework-d926de6f872b7d88.js",
+      "static/chunks/main-de431636bf14e4e8.js",
+      "static/chunks/fb7d5399-941a6941abd1fe57.js",
+      "static/chunks/140-6734f7aadae2925c.js",
+      "static/chunks/pages/blog/HilbertCurves5-cb533026b75cfa14.js"
+    ],
+    "/hire-me": [
+      "static/chunks/webpack-361045a862dcb90c.js",
+      "static/chunks/framework-d926de6f872b7d88.js",
+      "static/chunks/main-de431636bf14e4e8.js",
+      "static/chunks/pages/hire-me-1e84f48c343fdb10.js"
     ]
   },
   "ampFirstPages": []
